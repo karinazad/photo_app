@@ -1,0 +1,273 @@
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: lightgrey;
+}
+
+header {
+    padding: 3vh;
+    background: #EEE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+     text-decoration: none;
+    color: darkblue;
+}
+
+/* Navigation bar */
+.navbar {
+	width: 100%;
+    background-color: white;
+    height: 100%;
+    padding-top: 5%;
+    padding-left: 2%;
+    overflow: hidden;
+   vertical-align: middle;
+}
+
+.logo {
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+    width:3%;
+}
+
+
+.navbar a{
+        display: inline-block;
+        float: right;
+        vertical-align: top;
+        margin-right: 20px;
+        height: 80px;
+}
+
+/* Recommendation panel */
+
+.main{
+    padding: 5%;
+    width: 65%;
+    margin-left: 7%;
+    /*margin-left: 2%;*/
+    /*margin-right: 10%;*/
+
+}
+
+.recommendation_panel{
+    box-sizing: border-box;
+    float: right;
+    width: 30vh;
+    display: inline-block;
+    height: 100vh;
+    padding: 10px;
+    margin-right: 10%;
+    resize: both;
+    overflow: auto;
+}
+
+.recommendation_panel h2{
+    color:grey;
+    font-size:20px;
+}
+
+.user_profile{
+    margin-bottom: 30%;
+    font-family: Comfortaa, Helvetica, sans-serif;
+}
+.user_profile img {
+
+    width: 40%;
+    box-sizing: border-box;
+    float: left;
+    margin-right: 5%
+}
+
+.user_profile h3{
+    padding: 5%
+}
+
+.profile{
+}
+
+.profile h3 {
+    font-size: 15px;
+}
+
+.profile p {
+    color: grey;
+     box-sizing: border-box;
+    float: right;
+
+}
+
+.profile a{
+    box-sizing: border-box;
+    float: right;
+}
+
+.profile_info
+{
+    box-sizing: border-box;
+    float: left;
+
+}
+
+.profile img {
+    width: 30%;
+    border-radius: 50%;
+    box-sizing: border-box;
+    float: left;
+}
+
+
+/* END Recommendation panel */
+
+
+/* STORIES */
+
+.stories {
+    /*width: 100%;*/
+    /*height: 20vh;*/
+    /*background-color: white;*/
+     width: 100%;
+    height: 100%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    background-color: white;
+    display: flex;
+
+}
+
+.story {
+    display: block;
+
+}
+
+.story img{
+    width: 30%;
+    border-radius: 50%;
+    border: 1px grey;
+  /*float: left;*/
+     display: block;
+
+
+}
+
+.story_user_name {
+    font-size: 12px;
+    color: grey;
+    /*float: left;*/
+     display: block;
+
+
+}
+
+
+
+/* CARDS */
+
+.cards{
+    margin-top: 5%;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+
+}
+
+.cards h3 {
+    background-color: white;
+    margin-left: 5%;
+    padding-top: 5%;
+    font-family: Comfortaa, sans-serif;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+}
+
+.cards h5{
+    font-weight: bold;
+    background-color: white;
+    padding-top: 5%;
+    font-family: Comfortaa,  sans-serif;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+}
+
+.left {
+     float: left;
+    margin-left: 5%
+}
+
+.right{
+    float: right;
+
+}
+
+.margin_left {
+     margin-left: 5%
+}
+
+.margin_right{
+    margin-right: 5%
+
+}
+
+.margin_bottom{
+    margin-bottom: 5%
+}
+
+.large_margin_bottom{
+    margin-bottom: 30%
+}
+
+.cards .user_name {
+    font-family: Comfortaa, sans-serif;
+}
+
+.cards img{
+    width: 100%;
+    display:block;
+    margin:auto;
+
+}
+
+.card_icons {
+    margin-top: 2%;
+}
+
+.comments{
+    display:block;
+
+}
+
+.comments h6 {
+    color: gray
+}
+
+.solid_line {
+    width:100%;
+    border-top: 1px solid #bbb;
+    color: grey
+}
+
+.post{
+    margin-bottom: 5%
+}
+
+
+
+
+@media only screen and (max-width: 1000px) {
+    /* Media queries go here */
+}
+
+@media only screen and (max-width: 600px) {
+    .recommendation_panel{
+        display: none
+    }
+}
