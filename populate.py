@@ -7,9 +7,6 @@ from flask import Flask
 from faker import Faker
 from datetime import datetime, timedelta
 
-from flask_sqlalchemy import SQLAlchemy
-
-
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -233,7 +230,7 @@ with app.app_context():
     # uncomment if you want to drop all tables
     print('{0}. Dropping all tables...'.format(step))
     db.drop_all()
-    step += 1
+    step += 1 
 
     print('{0}. creating DB tables (if they don\'t already exist)...'.format(step))
     db.create_all()
