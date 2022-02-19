@@ -2,6 +2,7 @@ from datetime import datetime
 from . import db
 from .utils import get_display_time
 
+
 class Comment(db.Model):
     __tablename__ = 'comments'
 

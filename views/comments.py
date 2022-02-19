@@ -3,6 +3,7 @@ from flask_restful import Resource
 from . import can_view_post
 import json
 from models import db, Comment, Post, User
+from tests.utils import get_authorized_user_ids
 
 class CommentListEndpoint(Resource):
 
@@ -29,14 +30,15 @@ class CommentListEndpoint(Resource):
         accessible_posts = [p[0] for p in accessible_posts]
         all_accessible_posts_id = [p.to_dict()["id"] for p in accessible_posts]
 
+        authorized_ids = get_authorized_user_ids(self.current_user.id)
 
         if not str(post_id).isnumeric():
             return Response(json.dumps({'message': 'Invalid or no post_id provided'}),  mimetype="application/json", status=400)
 
-        if not post_id in all_posts_id or post_id not in all_accessible_posts_id:
-            return Response(json.dumps({'message': ''}), mimetype="application/json",
-                            status=404)
-
+        # TODO: Temporarily removed security
+        # if not post_id in all_posts_id or post_id not in all_accessible_posts_id:
+        #     return Response(json.dumps({'message': 'Cannot access this post'}), mimetype="application/json",
+        #                     status=404)
 
         comment = Comment(text=text, user_id=self.current_user.id, post_id=post_id)
 

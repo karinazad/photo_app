@@ -4,6 +4,8 @@ from models import User, Following, db
 from . import get_authorized_user_ids
 import json
 
+from tests import utils
+
 class SuggestionsListEndpoint(Resource):
 
     def __init__(self, current_user):
@@ -11,20 +13,29 @@ class SuggestionsListEndpoint(Resource):
     
     def get(self):
 
-        all_users = User.query.all()
-        all_users = [user.to_dict() for user in all_users]
+        # all_users = User.query.all()
+        # all_users = [user.to_dict() for user in all_users]
+        #
+        # followings = Following.query.filter_by(user_id=self.current_user.id).all()
+        # followings_ids = [fol.to_dict_following()["id"] for fol in followings]
+        # new_users = []
+        #
+        # for user in all_users:
+        #     if user["id"] not in followings_ids:
+        #         new_users.append(user)
+        #
+        #     if len(new_users) == 7:
+        #         break
 
-        followings = Following.query.filter_by(user_id=self.current_user.id).all()
-        followings_ids = [fol.to_dict_following()["id"] for fol in followings]
+        ids = utils.get_unrelated_users(self.current_user.id)
+        new_users = User.query.filter(User.id.in_(ids)).all()
 
-        new_users = []
+        if len(new_users) > 7:
+            new_users = new_users[:7]
 
-        for user in all_users:
-            if user["id"] not in followings_ids:
-                new_users.append(user)
-
-            if len(new_users) == 7:
-                break
+        new_users = [
+            user.to_dict() for user in new_users
+        ]
 
         return Response(json.dumps(new_users), mimetype="application/json", status=200)
 

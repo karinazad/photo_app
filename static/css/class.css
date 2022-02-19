@@ -176,42 +176,122 @@ main {
     margin-right: 10px;
 }
 
-.suggestion-text {
-    color: #666;
-    font-weight: 600;
-    letter-spacing: 0px;
+
+
+/*Suggestions start*/
+
+/*.suggestion-text {*/
+/*    color: #666;*/
+/*    font-weight: 600;*/
+/*    letter-spacing: 0px;*/
+/*}*/
+
+/*.suggestions section {*/
+/*    display: grid;*/
+/*    grid-template-columns: 35px 2fr 1fr;*/
+/*    align-items: center;*/
+/*    width: 25vw;*/
+/*}*/
+/*.suggestions section > div {*/
+/*    padding: 8px;*/
+/*}*/
+/*.suggestions section p, .suggestions section a {*/
+/*    margin: 0px;*/
+/*}*/
+/*.suggestions section p {*/
+/*    color: #333;*/
+/*    font-weight: 600;*/
+/*}*/
+/*.suggestions section a {*/
+/*    font-size: 0.8em;*/
+/*}*/
+/*.suggestions section p:nth-child(2) {*/
+/*    color: #666;*/
+/*    font-size: 0.8em;*/
+/*    font-weight: 400;*/
+/*}*/
+/*.suggestions section .pic {*/
+/*    min-width: 30px;*/
+/*    min-height: 30px;*/
+/*    border: solid 1px #dbdbdb;*/
+/*    border-radius: 15px;*/
+/*}*/
+
+.user {
+    width: 350px;
+    background-color: #ececec;
+    padding: 5px;
+    display: flex;
+    padding-bottom: 20px;
 }
 
-.suggestions section {
+
+
+.suggestions{
+    width: 350px;
+    background-color: #ececec;
+    padding: 5px;
+}
+.suggestion{
     display: grid;
-    grid-template-columns: 35px 2fr 1fr;
+    grid-template-columns: 50px auto 70px;
     align-items: center;
-    width: 25vw;
+    padding-bottom: 5%;
+
 }
-.suggestions section > div {
-    padding: 8px;
+
+.suggestion p {
+    margin: 0;
 }
-.suggestions section p, .suggestions section a {
-    margin: 0px;
-}
-.suggestions section p {
-    color: #333;
-    font-weight: 600;
-}
-.suggestions section a {
-    font-size: 0.8em;
-}
-.suggestions section p:nth-child(2) {
-    color: #666;
-    font-size: 0.8em;
-    font-weight: 400;
-}
-.suggestions section .pic {
-    min-width: 30px;
-    min-height: 30px;
-    border: solid 1px #dbdbdb;
+
+.suggestion img{
     border-radius: 15px;
 }
+
+.bold-font {
+    font-weight: bold
+}
+
+.small-font {
+    font-size: 0.9em;
+}
+
+.xs {
+    font-size: 0.5em;
+}
+
+.uppercase
+{
+     text-transform: uppercase;
+}
+
+.gray {
+    color: gray;
+}
+
+
+
+.follow{
+    background: transparent;
+    padding: 5px 10px;
+    border: 1px;
+    border-radius: 4px;
+    border-color: grey;
+    color: #3c6ed9;
+}
+
+.unfollow{
+     background: white;
+    border-radius: 3px;
+    color: #3c6ed9;
+
+}
+
+
+
+/*Suggestions end*/
+
+
 aside header {
     display: flex;
     align-items: center;
@@ -232,6 +312,102 @@ aside header .pic {
 .fas.fa-heart {
     color: #d50f0f;
 }
+
+.no-border-button {
+    border: none;
+    background: none;
+}
+
+
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(50,50,50, 0.8);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bg button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+}
+
+.modal {
+    background-color: white;
+    width: 90vw;
+    height: 80vh;
+    opacity: 1;
+    display: flex;
+
+}
+
+
+.modal .center-img  {
+    opacity: 1;
+    width: 60vw;
+    height: 100%;
+}
+
+.modal-left {
+    width: 100%;
+    background-color: #ececec;
+    padding: 5px;
+    overflow: scroll;
+
+}
+
+.modal-user {
+    display: grid;
+    grid-template-columns: 50px auto;
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-bottom: 3%;
+    border-bottom: 1px solid #bbb;
+
+    justify-content: left;
+    align-items: center;
+
+}
+
+.modal-user-pic {
+    border-radius: 50%;
+    width: 50px;
+    margin: 5%;
+    padding: 5%;
+}
+
+.modal-user h2 {
+    margin: 3%;
+    padding: 3%;
+
+}
+
+.modal-comments {
+overflow: scroll;
+}
+
+
+.modal-comment {
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+     justify-content: left;
+    align-items: center;
+}
+
+.modal-comment img{
+    border-radius: 50%;
+    width: 50px;
+}
+
+
+
+
+
 
 @media (max-width: 900px) {
     aside {

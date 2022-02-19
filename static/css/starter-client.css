@@ -192,45 +192,94 @@ main {
     margin-right: 10px;
 }
 
-.suggestion-text {
-    color: #666;
-    font-weight: 600;
-    letter-spacing: 0px;
+/*.suggestion-text {*/
+/*    color: #666;*/
+/*    font-weight: 600;*/
+/*    letter-spacing: 0px;*/
+/*}*/
+
+/*.suggestions section {*/
+/*    display: grid;*/
+/*    grid-template-columns: 35px 2fr 1fr;*/
+/*    align-items: center;*/
+/*    width: 25vw;*/
+/*}*/
+/*.suggestions section > div {*/
+/*    padding: 8px;*/
+/*    width: 200px;*/
+/*}*/
+/*.suggestions section p, .suggestions section a {*/
+/*    margin: 0px;*/
+/*}*/
+/*.suggestions section p {*/
+/*    color: #333;*/
+/*    font-weight: 600;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+/*.suggestions section a {*/
+/*    font-size: 0.8em;*/
+/*}*/
+/*.suggestions section p:nth-child(2) {*/
+/*    color: #666;*/
+/*    font-size: 0.8em;*/
+/*    font-weight: 400;*/
+/*}*/
+/*.suggestions section .pic {*/
+/*    min-width: 30px;*/
+/*    min-height: 30px;*/
+/*    border: solid 1px #dbdbdb;*/
+/*    border-radius: 15px;*/
+/*}*/
+
+
+/*  Suggestions Start */
+
+
+#suggestions{
+    width: 350px;
+    background-color: #ececec;
+    padding: 5px;
+}
+.suggestion{
+    display: grid;
+    grid-template-columns: 50px auto 70px;
+    align-items: center;
+
 }
 
-.suggestions section {
-    display: grid;
-    grid-template-columns: 35px 2fr 1fr;
-    align-items: center;
-    width: 25vw;
+.suggestion p {
+    margin: 0;
 }
-.suggestions section > div {
-    padding: 8px;
-    width: 200px;
-}
-.suggestions section p, .suggestions section a {
-    margin: 0px;
-}
-.suggestions section p {
-    color: #333;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.suggestions section a {
-    font-size: 0.8em;
-}
-.suggestions section p:nth-child(2) {
-    color: #666;
-    font-size: 0.8em;
-    font-weight: 400;
-}
-.suggestions section .pic {
-    min-width: 30px;
-    min-height: 30px;
-    border: solid 1px #dbdbdb;
+
+.suggestion img{
     border-radius: 15px;
 }
+
+.bold-font {
+    font-weight: bold
+}
+
+.small-font {
+    font-size: 0.9em;
+}
+
+
+.follow{
+    background: transparent;
+    padding: 5px 10px;
+    border: 1px;
+    border-radius: 4px;
+    border-color: grey
+}
+
+.unfollow{
+     background: white;
+
+
+}
+/*  Suggestions End */
+
 aside header {
     display: flex;
     align-items: center;
@@ -268,3 +317,7 @@ aside header .pic {
         width: 90vw;
     }
 }
+
+
+
+
