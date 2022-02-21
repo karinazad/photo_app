@@ -81,7 +81,6 @@ const unfollowUser = (followingId, elem) => {
         elem.classList.remove("unfollow")
 
         elem.setAttribute("aria-checked","false")
-
         elem.removeAttribute('data-following-id');
 
         console.log(`Successfully unfollowed  ${followingId}`)
@@ -178,7 +177,7 @@ const displayComments = (comments, postId) => {
 
     if (comments.length > 1 ) {
         html += `
-            <p><button class="link" data-post-id="${postId}" onclick = "showPostDetail(event);">
+            <p><button class="link view-all-comments" data-post-id="${postId}" onclick = "showPostDetail(event);">
                 View all ${ comments.length } comments
             </button></p>
           `;
@@ -200,6 +199,7 @@ const displayComments = (comments, postId) => {
 const likeUnlike = ev => {
     const elem = ev.currentTarget
     let heart_color = ""
+    let aria_check = ""
 
     if (elem.dataset.likeId === "undefined") {
 
@@ -221,6 +221,7 @@ const likeUnlike = ev => {
             });
 
         heart_color = "s"
+        aria_check = "true"
 
     } else {
 
@@ -240,9 +241,14 @@ const likeUnlike = ev => {
         });
 
         heart_color = "r"
+        aria_check = "false"
     }
 
-    elem.innerHTML = `<i class="fa${heart_color} fa-heart fa-lg"></i>`
+    elem.innerHTML = `<i class="fa${heart_color} fa-heart fa-lg" 
+                        aria-label="Follow"
+                        aria-checked="${aria_check}">
+                        
+</i>`
 
 };
 
@@ -252,6 +258,7 @@ const likeUnlike = ev => {
 const bookmarkUnbookmark = ev => {
     const elem = ev.currentTarget
     let bookmark_color = ""
+    let aria_check = ""
 
     console.log(elem)
 
@@ -274,6 +281,7 @@ const bookmarkUnbookmark = ev => {
 
                 });
              bookmark_color = "s"
+            aria_check = "true"
     } else {
         // Remove a bookmark
         fetch(`http://127.0.0.1:5000/api/bookmarks/${elem.dataset.bookmarkId}`, {
@@ -289,13 +297,16 @@ const bookmarkUnbookmark = ev => {
 
             });
          bookmark_color = "r"
+         aria_check = "false"
     }
 
-    console.log(elem.innerHTML)
-    console.log("BOOKMARK COLOR: " + bookmark_color)
-    console.log("SETTING HTML TO:" + `<i class=\"fa${bookmark_color} fa-bookmark\"></i>`)
-    elem.innerHTML = `<i class="fa${bookmark_color} fa-bookmark"></i>`
 
+    elem.innerHTML = `<i 
+                        class="fa${bookmark_color} fa-bookmark " 
+                        aria-label="Follow"
+                        aria-checked="${aria_check}">
+                        
+                        </i>`
 };
 
 // <button data-post-id=${post.id} onClick="updateLikes(event)">Update likes</button>
@@ -378,7 +389,10 @@ const displayPosts = limit => {
 
 
 const destroyModal = ev => {
+    const elem = ev.currentTarget
+    elem.setAttribute("aria-check", "false")
     document.querySelector('#modal-container').innerHTML = "";
+    document.querySelector('.view-all-comments').focus()
 }
 
 
@@ -394,7 +408,8 @@ const showPostDetail = ev => {
 
             const html = `
                      <div class ="modal-bg">
-                        <button onclick="destroyModal(event)">Close</button>
+                        <button onclick="destroyModal(event)" class="modal-close-button" aria-label="Modal Open" aria-check="true" autofocus>
+                        X </button>
                         
                         <div class="modal">
                             <img class = "modal center-img"src="${post.image_url}" />
@@ -413,6 +428,7 @@ const showPostDetail = ev => {
 
 
             document.querySelector('#modal-container').innerHTML =  html;
+            document.querySelector('.modal-close-button').focus()
         })
 };
 

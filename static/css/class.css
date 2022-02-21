@@ -404,6 +404,14 @@ overflow: scroll;
     width: 50px;
 }
 
+.modal-close-button {
+    color: white;
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    font-weight: bold
+}
+
 
 
 
