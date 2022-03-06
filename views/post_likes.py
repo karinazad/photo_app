@@ -3,6 +3,7 @@ from flask_restful import Resource
 from models import LikePost, db, Post, User, Following
 import json
 from . import can_view_post
+import flask_jwt_extended
 
 class PostLikesListEndpoint(Resource):
 
@@ -67,21 +68,17 @@ class PostLikesDetailEndpoint(Resource):
 
 
 
-        return Response(json.dumps({}), mimetype="application/json", status=200)
-
-
-
 def initialize_routes(api):
     api.add_resource(
         PostLikesListEndpoint, 
         '/api/posts/<post_id>/likes', 
         '/api/posts/<post_id>/likes/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
 
     api.add_resource(
         PostLikesDetailEndpoint, 
         '/api/posts/<post_id>/likes/<id>', 
         '/api/posts/<post_id>/likes/<id>/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

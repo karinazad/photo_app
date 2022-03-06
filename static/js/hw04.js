@@ -1,3 +1,19 @@
+const getCookie = key => {
+    let name = key + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+};
+
 
 // Stories Start |---->
 const story2Html = story => {
@@ -45,6 +61,7 @@ const followUser = (userId, elem) => {
     fetch("http://127.0.0.1:5000/api/following/", {
             method: "POST",
             headers: {
+                'X-CSRF-TOKEN': getCookie('csrf_access_token'),
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(postData)
@@ -70,6 +87,7 @@ const unfollowUser = (followingId, elem) => {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token'),
         }
     })
     .then(response => response.json())
@@ -118,6 +136,7 @@ const getSuggestions = () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token'),
         }
     })
         .then(response => response.json())
@@ -152,6 +171,7 @@ const postComments = ev => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token'),
             },
             body: JSON.stringify(postData)
         })
@@ -210,6 +230,7 @@ const likeUnlike = ev => {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': getCookie('csrf_access_token'),
                 },
                 body: JSON.stringify(postData)
             })
@@ -230,6 +251,7 @@ const likeUnlike = ev => {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token'),
             }
         })
         .then(response => response.json())
@@ -271,6 +293,7 @@ const bookmarkUnbookmark = ev => {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': getCookie('csrf_access_token'),
                     },
                     body: JSON.stringify(postData)
                 })
@@ -288,6 +311,7 @@ const bookmarkUnbookmark = ev => {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token'),
             }
         })
             .then(response => response.json())
@@ -470,6 +494,7 @@ const displayModalUser = () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
+            // 'X-CSRF-TOKEN': getCookie('csrf_access_token'),
         }
     })
     .then(response => response.json())
@@ -495,6 +520,7 @@ const displayProfile = () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
+            // 'X-CSRF-TOKEN': getCookie('csrf_access_token'),
         }
     })
     .then(response => response.json())

@@ -2,7 +2,7 @@ from flask import Response, request
 from flask_restful import Resource
 from models import Post, User, db, Following
 import json
-
+import flask_jwt_extended
 
 def get_path():
     return request.host_url + 'api/posts/'
@@ -26,5 +26,7 @@ def initialize_routes(api):
         FollowerListEndpoint, 
         '/api/followers', 
         '/api/followers/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user,
+                                   # api.app.current_user
+                               }
     )
