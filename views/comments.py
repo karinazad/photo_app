@@ -36,9 +36,9 @@ class CommentListEndpoint(Resource):
             return Response(json.dumps({'message': 'Invalid or no post_id provided'}),  mimetype="application/json", status=400)
 
         # TODO: Temporarily removed security
-        # if not post_id in all_posts_id or post_id not in all_accessible_posts_id:
-        #     return Response(json.dumps({'message': 'Cannot access this post'}), mimetype="application/json",
-        #                     status=404)
+        if not post_id in all_posts_id or post_id not in all_accessible_posts_id:
+            return Response(json.dumps({'message': 'Cannot access this post'}), mimetype="application/json",
+                            status=404)
 
         comment = Comment(text=text, user_id=self.current_user.id, post_id=post_id)
 

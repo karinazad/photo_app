@@ -36,12 +36,14 @@ class BookmarksListEndpoint(Resource):
             }
             return Response(json.dumps(response_obj), mimetype="application/json", status=404)
 
+
         if type(post_id) is not int:
             message = f'Invalid Post ID format provided: {post_id}. Must be a number'
             response_obj = {
                 'message': message
             }
             return Response(json.dumps(response_obj), mimetype="application/json", status=400)
+
 
         if not can_view_post(user=self.current_user, post_id=post_id):
             message = 'You are not authorized to do this.'

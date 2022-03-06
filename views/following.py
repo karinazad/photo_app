@@ -38,9 +38,9 @@ class FollowingListEndpoint(Resource):
             return Response(json.dumps({'message': 'Invalid or no user id provided'}),
                             mimetype="application/json", status=400)
 
-        # if user_id not in all_users_id:
-        #     return Response(json.dumps({'message': 'Invalid or no user id provided'}),
-        #              mimetype="application/json", status=404)
+        if user_id not in all_users_id:
+            return Response(json.dumps({'message': 'Invalid or no user id provided'}),
+                     mimetype="application/json", status=404)
 
         following = Following(user_id=self.current_user.id, following_id=user_id)
 
