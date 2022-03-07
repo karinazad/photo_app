@@ -1,3 +1,4 @@
+import flask_jwt_extended
 from flask import Response, request
 from flask_restful import Resource
 from models import Bookmark, db
@@ -11,6 +12,7 @@ class BookmarksListEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
 
+    @flask_jwt_extended.jwt_required()
     def get(self):
         # Your code here
         # Show bookmarks associated with the current used
@@ -24,6 +26,7 @@ class BookmarksListEndpoint(Resource):
         return Response(json.dumps(bookmarks_list_of_dictionaries), mimetype="application/json", status=200)
 
     @handle_db_insert_error
+    @flask_jwt_extended.jwt_required()
     def post(self):
         body = request.get_json()
 
@@ -36,12 +39,14 @@ class BookmarksListEndpoint(Resource):
             }
             return Response(json.dumps(response_obj), mimetype="application/json", status=404)
 
+
         if type(post_id) is not int:
             message = f'Invalid Post ID format provided: {post_id}. Must be a number'
             response_obj = {
                 'message': message
             }
             return Response(json.dumps(response_obj), mimetype="application/json", status=400)
+
 
         if not can_view_post(user=self.current_user, post_id=post_id):
             message = 'You are not authorized to do this.'
@@ -65,6 +70,7 @@ class BookmarkDetailEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
 
+    @flask_jwt_extended.jwt_required()
     def delete(self, id):
         try:
             int_id = int(id)
@@ -110,12 +116,12 @@ def initialize_routes(api):
         BookmarksListEndpoint,
         '/api/bookmarks',
         '/api/bookmarks/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
 
     api.add_resource(
         BookmarkDetailEndpoint,
         '/api/bookmarks/<id>',
         '/api/bookmarks/<id>',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

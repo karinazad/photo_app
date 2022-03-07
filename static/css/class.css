@@ -219,7 +219,7 @@ main {
 
 .user {
     width: 350px;
-    background-color: #ececec;
+    /*background-color: #ececec;*/
     padding: 5px;
     display: flex;
     padding-bottom: 20px;
@@ -229,7 +229,7 @@ main {
 
 .suggestions{
     width: 350px;
-    background-color: #ececec;
+    /*background-color: #ececec;*/
     padding: 5px;
 }
 .suggestion{
