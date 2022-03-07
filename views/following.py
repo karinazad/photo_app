@@ -1,3 +1,4 @@
+import flask_jwt_extended
 from flask import Response, request
 from flask_restful import Resource
 from models import Following, User, db
@@ -11,7 +12,8 @@ def get_path():
 class FollowingListEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
-    
+
+    @flask_jwt_extended.jwt_required()
     def get(self):
         # Your code here
 
@@ -20,6 +22,7 @@ class FollowingListEndpoint(Resource):
 
         return Response(json.dumps(following), mimetype="application/json", status=200)
 
+    @flask_jwt_extended.jwt_required()
     def post(self):
         # Your code here
 
@@ -57,7 +60,8 @@ class FollowingListEndpoint(Resource):
 class FollowingDetailEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
-    
+
+    @flask_jwt_extended.jwt_required()
     def delete(self, id):
 
         if not str(id).isnumeric():
@@ -86,11 +90,11 @@ def initialize_routes(api):
         FollowingListEndpoint, 
         '/api/following', 
         '/api/following/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
     api.add_resource(
         FollowingDetailEndpoint, 
         '/api/following/<id>', 
         '/api/following/<id>/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
