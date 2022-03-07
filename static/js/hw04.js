@@ -1,3 +1,18 @@
+const getCookie = key => {
+    let name = key + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+};
 
 // Stories Start |---->
 const story2Html = story => {
@@ -11,7 +26,10 @@ const story2Html = story => {
 
 // fetch data from your API endpoint:
 const displayStories = () => {
-    fetch('/api/stories')
+    fetch('/api/stories', {
+        headers: {'X-CSRF-TOKEN': getCookie('csrf_access_token')}
+        }
+       )
         .then(response => response.json())
         .then(stories => {
             const html = stories.map(story2Html).join('\n');
@@ -46,6 +64,7 @@ const followUser = (userId, elem) => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             },
             body: JSON.stringify(postData)
         })
@@ -70,6 +89,7 @@ const unfollowUser = (followingId, elem) => {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         }
     })
     .then(response => response.json())
@@ -118,6 +138,8 @@ const getSuggestions = () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
+             'X-CSRF-TOKEN': getCookie('csrf_access_token')
+
         }
     })
         .then(response => response.json())
@@ -141,7 +163,7 @@ const postComments = ev => {
     const text = document.querySelector('.comment-input').value
     const postId = ev.currentTarget.dataset.postId;
 
-     console.log("TEXT is " + text)
+    console.log("TEXT is " + text)
     const postData = {
         "post_id": postId,
         "text": text,
@@ -152,6 +174,7 @@ const postComments = ev => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             },
             body: JSON.stringify(postData)
         })
@@ -210,6 +233,7 @@ const likeUnlike = ev => {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': getCookie('csrf_access_token')
                 },
                 body: JSON.stringify(postData)
             })
@@ -230,6 +254,7 @@ const likeUnlike = ev => {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             }
         })
         .then(response => response.json())
@@ -271,6 +296,7 @@ const bookmarkUnbookmark = ev => {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': getCookie('csrf_access_token')
                     },
                     body: JSON.stringify(postData)
                 })
@@ -288,6 +314,7 @@ const bookmarkUnbookmark = ev => {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             }
         })
             .then(response => response.json())
@@ -375,7 +402,9 @@ const post2Html = post => {
 
 // fetch data from your API endpoint:
 const displayPosts = limit => {
-    fetch('/api/posts')
+    fetch('/api/posts', {
+        headers: { 'X-CSRF-TOKEN': getCookie('csrf_access_token')}
+    })
         .then(response => response.json())
         .then(posts => {
             const html = posts.map(post2Html).join('\n');
@@ -400,7 +429,10 @@ const showPostDetail = ev => {
     const postId = ev.currentTarget.dataset.postId;
     console.log("post id:")
     console.log(postId)
-    fetch(`/api/posts/${postId}`)
+    fetch(`/api/posts/${postId}`,
+        {
+            headers: { 'X-CSRF-TOKEN': getCookie('csrf_access_token')}
+        })
         .then(response => response.json())
         .then(post => {
             console.log(post)
@@ -470,6 +502,7 @@ const displayModalUser = () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         }
     })
     .then(response => response.json())
@@ -495,6 +528,7 @@ const displayProfile = () => {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         }
     })
     .then(response => response.json())

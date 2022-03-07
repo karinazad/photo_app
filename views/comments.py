@@ -1,3 +1,4 @@
+import flask_jwt_extended
 from flask import Response, request
 from flask_restful import Resource
 from . import can_view_post
@@ -9,7 +10,8 @@ class CommentListEndpoint(Resource):
 
     def __init__(self, current_user):
         self.current_user = current_user
-    
+
+    @flask_jwt_extended.jwt_required()
     def post(self):
         body = request.get_json()
         post_id = body.get("post_id")
@@ -36,9 +38,9 @@ class CommentListEndpoint(Resource):
             return Response(json.dumps({'message': 'Invalid or no post_id provided'}),  mimetype="application/json", status=400)
 
         # TODO: Temporarily removed security
-        # if not post_id in all_posts_id or post_id not in all_accessible_posts_id:
-        #     return Response(json.dumps({'message': 'Cannot access this post'}), mimetype="application/json",
-        #                     status=404)
+        if not post_id in all_posts_id or post_id not in all_accessible_posts_id:
+            return Response(json.dumps({'message': 'Cannot access this post'}), mimetype="application/json",
+                            status=404)
 
         comment = Comment(text=text, user_id=self.current_user.id, post_id=post_id)
 
@@ -56,7 +58,8 @@ class CommentDetailEndpoint(Resource):
 
     def __init__(self, current_user):
         self.current_user = current_user
-  
+
+    @flask_jwt_extended.jwt_required()
     def delete(self, id):
         if not str(id).isnumeric():
             return Response(json.dumps({'message': 'Invalid or no id provided'}),
@@ -84,12 +87,12 @@ def initialize_routes(api):
         CommentListEndpoint, 
         '/api/comments', 
         '/api/comments/',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
 
     )
     api.add_resource(
         CommentDetailEndpoint, 
         '/api/comments/<id>', 
         '/api/comments/<id>',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
