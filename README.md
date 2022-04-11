@@ -1,8 +1,13 @@
 # PhotoApp
 A web application with REST API built using Flask-RESTful. Connected to a PostreSQL database. Contains an authentication server and a chat server (using web sockets).
 
-## Deployed as a Heroku App
+<br>
+
+## Deployed to Heroku
 cs396-northwestern-photoapp.herokuapp.com
+
+<br>
+
 
 ## Installation
 To install dependencies, navigate to your `photo-app` directory on your command line and issue the following commands:
