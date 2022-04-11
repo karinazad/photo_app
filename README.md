@@ -1,5 +1,5 @@
 # PhotoApp
-A web application built with REST API built using Flask-RESTful. Connected to a PostreSQL database.
+A web application with REST API built using Flask-RESTful. Connected to a PostreSQL database. Contains an authentication server and a chat server (using web sockets).
 
 ## Deployed as a Heroku App
 cs396-northwestern-photoapp.herokuapp.com
