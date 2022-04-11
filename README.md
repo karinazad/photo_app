@@ -1,5 +1,5 @@
 # PhotoApp
-A web application with REST API built using Flask-RESTful. Connected to a PostreSQL database. Contains an authentication server and a chat server (using web sockets).
+A web application with REST API built using Flask-RESTful. Connected to a PostreSQL database. Contains an authentication server and a chat server (using web sockets). Created as a part of CS396 Web Development Course at Northwestern University (Winter 2022).
 
 <br>
 
