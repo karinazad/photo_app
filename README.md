@@ -8,13 +8,6 @@ A web application with REST API built using Flask-RESTful. Connected to a Postre
 ## Deployed to Heroku
 cs396-northwestern-photoapp.herokuapp.com
 
-To login, you can use the following demo user
-```
-username: webdev
-password: password
-
-```
-
 <br>
 
 
