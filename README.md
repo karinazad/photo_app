@@ -1,5 +1,5 @@
 # PhotoApp
-A web application with REST API built using Flask-RESTful. Connected to a PostreSQL database. Contains an authentication server and a chat server (using web sockets). Created as a part of CS396 Web Development Course at Northwestern University (Winter 2022).
+A web application with REST API built using Flask-RESTful. Connected to a PostgreSQL database. Contains an authentication server and a chat server (using web sockets). Created as a part of CS396 Web Development Course at Northwestern University (Winter 2022).
 
 <img src="https://cs396-web-dev.github.io/winter2022/assets/images/homework/hw04/post-detail.gif" >
 
